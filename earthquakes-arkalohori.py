@@ -42,3 +42,20 @@ sns.scatterplot(x='timestamp', y='mag', data = df.iloc[:max_loc+1,:], ax =axs)
 sns.lineplot(x='date', y='mag', data = df.iloc[:max_loc+1,:], ax =axs)
 # %%
 plt.show()
+# %%
+
+
+# %%
+# %%
+df.columns
+# %%
+dts = [ (df.timestamp[i] -df.timestamp[i+1]).total_seconds() for i in range(df.shape[0]-1)]
+dts.append(0.0)
+df['dts'] = dts
+    
+# %%
+df.iloc[:max_loc+1,:].dts.plot.kde(xlim = [0,1e4])
+# %%
+df.iloc[:max_loc+1,:].dts.plot.hist(xlim = [0,1e4])
+
+# %%
