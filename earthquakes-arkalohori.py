@@ -62,4 +62,5 @@ df.iloc[:max_loc+1,:].plot.scatter(x='sec_before', y='mag', xlim= (0,10000))
 # %%
 fig, axs = plt.subplots(nrows=1, ncols=1,figsize=(20,15))
 df.iloc[:max_loc+1,:].plot.scatter(x ='sec_before', y='mag', ax =axs, logx=True,xlim=[1,1e6])
+plt.grid()
 # %%
