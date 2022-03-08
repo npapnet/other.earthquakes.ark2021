@@ -12,10 +12,24 @@ df = pd.read_csv('catalogue.csv', usecols=[0,1,2,3,4])
 df.columns = ['timestamp', 'lat', 'long', 'depth', 'mag']
 # convert 
 df.timestamp = pd.to_datetime(df.timestamp.apply(lambda x : x[1:]))
-
+#%%
+fig, ax = plt.subplots(1,1, figsize=(10,6))
+ax.plot(df.timestamp, df.mag, '.')
 # %% plot mag
+fig, ax = plt.subplots(1,1, figsize=(10,6))
 df.mag.plot.hist()
+#%%
+bins = np.arange(0,7,step=0.5)
 
+bins = [0,1,2,3,7]
+fig, ax = plt.subplots(2,2, figsize=(10,6))
+pfreq = sns.histplot(df.mag, stat="frequency", bins =bins, ax= ax[0,0])
+pprob = sns.histplot(df.mag, stat="probability", bins =bins,ax= ax[0,1])
+pdens = sns.histplot(df.mag, stat="density", bins =bins, ax= ax[1,0])
+# prob = sns.histplot(df.mag, stat="probability", bins =range(7), ax= ax[0,0])
+#%%|
+df.mag.plot.kde()
+plt.xlim([0,7])
 # %%
 max_loc = df.mag.idxmax()
 # %%  # additional columns
